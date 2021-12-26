@@ -12,14 +12,14 @@ const permit = () => {
     }
     // Make sure token exits
     if (!token) {
-      return res.status(401).json({ success: false, msg: 'You are not authorized to access this route 1' });
+      return res.status(401).json({ success: false, msg: 'You are not authorized to access this route' });
     }
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.author = decoded;
        console.log(req.author);
       if (!role.includes(req.author.role)) {
-        return res.status(401).json({ success: false, msg: 'You are not authorized to access this route 2' });
+        return res.status(401).json({ success: false, msg: 'You are not authorized to access this route' });
       }
       return next();
     } catch (error) {
